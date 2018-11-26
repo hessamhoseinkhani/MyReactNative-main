@@ -32,7 +32,7 @@ class EachCard extends Component {
             <Title style={styles.titleStyle}>{this.props.Title}</Title>
             <View style={styles.rowStyle}>
               <Paragraph numberOfLines={3} style={styles.paragraghStyle}>{this.props.Content}</Paragraph>
-              <Card.Cover source={{ uri: 'https://picsum.photos/200' }} style={styles.cardStyle} />
+              <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
               
             </View>
             
@@ -40,7 +40,7 @@ class EachCard extends Component {
           <Title style={[styles.nonTitleStyle , styles.textStyle]}>{this.props.Author}</Title>
           <View style={styles.rowStyle}>
             <Title style={[styles.textStyle , styles.titleStyle]}>{this.props.Date}</Title>
-            <Title style={styles.titleStyle}>  .  5 min read</Title>
+            <Title style={styles.titleStyle}></Title>
           </View>
       
         </Card>
@@ -89,11 +89,13 @@ const styles = StyleSheet.create({
       width: 200, 
       height: 70 , 
       marginTop : 10 ,
+      paddingTop : 13 ,
       marginRight : 25 ,
       fontSize : 20 , 
       fontWeight : 'bold'
     } , 
     titleStyle : {
+ 
       fontSize : 15 ,
       fontFamily: "normal" , 
       color : 'grey' ,
@@ -111,7 +113,8 @@ export default EachCard;
 
 
 
-/*      
+/*   
+<PaperProvider theme={theme}>   
             <Appbar.Header style={styles.appBar}>
               <Appbar.Action
                icon="dehaze"
@@ -139,25 +142,6 @@ export default EachCard;
           </View>
       
         </Card>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <PaperProvider theme={theme}>
-
-      
-
-      
-        </PaperProvider>
+</PaperProvider> 
+        
 */
