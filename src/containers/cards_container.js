@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import CardsContainer from '../containers/cards_container';
-
-
-
-
-const Cards = () => {
-    return (
-        <View>
-            <CardsContainer />
-        </View>
-    )
-}
-
-
-export default Cards;
-
-/*
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Button , Card , Title, Paragraph ,Drawer ,Appbar ,DefaultTheme } from 'react-native-paper';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { articlesListAll } from '../actions';
+import { bindActionCreators } from 'redux';
 // Importing Components and Files
-import EachCard from './eachCard';
+import EachCard from '../components/eachCard';
+import ArticlesList from '../components/articlesList'
 
 
 
@@ -30,13 +16,16 @@ import EachCard from './eachCard';
 
 
 
-
-class Cards extends Component {
+class CardsContainer extends Component {
+/*
     state = {
         cards : []
     };
-
+*/
     componentWillMount(){
+        console.log(this.props);
+        this.props.articlesListAll();
+        /*
         console.log("object Mounted !!!");
         axios.get('http://chetor.com/wp-json/wp/v2/posts?_embed&page=1')
             .then(Response => this.setState({cards : Response.data})) ;
@@ -56,23 +45,15 @@ class Cards extends Component {
                 });
                 }
                 //Alert.alert(this.state.albums.length === 0 ? 'zero':'more');
+                */
     }
 
     render() { 
         //console.log(typeof(this.state.cards[0].Content.rendered));
+        console.log(this.props);
         return (
             <View>
-                {this.state.cards.map(eachCard => (
-                    <EachCard
-                    key={eachCard.id}
-                    //Title={eachCard.title.rendered}
-                    Content={eachCard.title.rendered}
-                    Author={eachCard._embedded.author[0].name}
-                    Date={eachCard.date} 
-                    PicSrc={this.getImgUrl(eachCard.content.rendered)}
-                    selcted={true}
-                    />
-                    ))}
+                <ArticlesList {...this.props} />
             </View>
         );
     }
@@ -91,10 +72,18 @@ class Cards extends Component {
 }
  
 
+function mapStateToProps(state){
+    return {
+        data : state.articles
+    }
+}
 
 
-export default Cards;
-*/
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({articlesListAll} , dispatch)
+}
+//export default Cards;
+export default connect(mapStateToProps , mapDispatchToProps)(CardsContainer);
 
 
 /*
@@ -108,3 +97,18 @@ export default Cards;
             {id:8 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
 */
 
+
+
+/*
+                {this.state.articles.map(eachCard => (
+                    <EachCard
+                    key={eachCard.id}
+                    //Title={eachCard.title.rendered}
+                    Content={eachCard.title.rendered}
+                    Author={eachCard._embedded.author[0].name}
+                    Date={eachCard.date} 
+                    PicSrc={this.getImgUrl(eachCard.content.rendered)}
+                    selcted={true}
+                    />
+                    ))}
+*/

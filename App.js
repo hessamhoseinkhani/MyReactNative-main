@@ -1,36 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView } from 'react-native';
-import { Provider as PaperProvider, Divider } from 'react-native-paper';
-import { Button ,Card, Title, Paragraph ,Drawer ,Appbar ,DefaultTheme } from 'react-native-paper';
+
 import Header from './src/components/header';
 import EachCard from './src/components/eachCard';
 import Cards from './src/components/cards';
 //import Cards from './src/components/cards'
 
+//Redux requiered libraries
+import { Provider } from 'react-redux';
+import { createStore , applyMiddleware } from 'redux';
+import promiseMiddleware from 'redux-promise';
+import reducers from './src/reducers';
 
+const createStoreWithMiddlewre = applyMiddleware(promiseMiddleware)(createStore);
 
 export default class App extends React.Component {
 
   render() {
     return (
       <View>
-                    <Appbar.Header style={styles.appBar}>
-              <Appbar.Action
-               icon="dehaze"
-              />
-              <Appbar.Content
-                title="Home"
-                style={styles.textStyle}
-              />
-              <Appbar.Action icon="search"  color="grey" />
-            </Appbar.Header>
-            <ScrollView style={{marginBottom:80}}>
+        <Header />
+        <Provider store={createStoreWithMiddlewre(reducers)}>
+          <ScrollView style={{marginBottom:80}}>
             <Cards />
-            
-            </ScrollView>
-        
+          </ScrollView>
+        </Provider>
       </View>
-       
+
+      
 
     );
   }
@@ -162,4 +159,45 @@ const styles = StyleSheet.create({
   </Card>
 
       </PaperProvider>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Appbar.Header style={styles.appBar}>
+                <Appbar.Action
+                icon="dehaze"
+                />
+                <Appbar.Content
+                  title="Home"
+                  style={styles.textStyle}
+                />
+                <Appbar.Action icon="search"  color="grey" />
+            </Appbar.Header>
+
+
+
+
+
+
+
+
+
+
+
+
 */
