@@ -58,7 +58,7 @@ class CardsContainer extends Component {
         );
     }
 
-    getImgUrl = (str) => {
+    getImgUrl = (str) => {//[""0""]._embedded[""wp:featuredmedia""][""0""].source_url
         if (str !== ''){
             let arr=[];
             arr[0] = str.slice(str.search(/src="/i));

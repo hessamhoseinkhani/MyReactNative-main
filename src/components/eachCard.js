@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View , Alert } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Button , Card , Title, Paragraph ,Drawer ,Appbar ,DefaultTheme ,Divider} from 'react-native-paper';
-
+import moment from 'jalali-moment'
 
 
 
@@ -22,26 +22,30 @@ class EachCard extends Component {
     state = {
         active: 'first',
       };
+
+
     render() { 
         return ( 
           
           <View>
 
-        <Card>
+        <Card button={true} onPress={() => {Alert.alert("2")}}>
           <Card.Content>
             <Title style={styles.titleStyle}>{this.props.Title}</Title>
             <View style={styles.rowStyle}>
-              <Paragraph numberOfLines={3} style={styles.paragraghStyle}>{this.props.Content}</Paragraph>
               <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
+              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
               
             </View>
-            
           </Card.Content>
-          <Title style={[styles.nonTitleStyle , styles.textStyle]}>{this.props.Author}</Title>
+          <View style={styles.alignLeft}>
+          <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:25}]}>{this.props.Author}</Title>
           <View style={styles.rowStyle}>
-            <Title style={[styles.textStyle , styles.titleStyle]}>{this.props.Date}</Title>
+            <Title style={[styles.textStyle , styles.titleStyle]}>{niceDate(this.props.Date)}</Title>
             <Title style={styles.titleStyle}></Title>
           </View>
+          </View>
+
       
         </Card>
         <Divider />
@@ -49,7 +53,13 @@ class EachCard extends Component {
          );
     }
 }
- 
+const al = () => {
+  return Alert.alert("im pressed");
+}
+
+const niceDate = (date) => {
+  return  moment(date ,'YYYY-M-D HH:mm:ss').locale('fa').format('dddd  Do  MMMM  YYYY');
+}
 
 
 
@@ -71,6 +81,7 @@ const styles = StyleSheet.create({
     } ,
     textStyle : {
       marginLeft: 16 ,
+      
     } ,
     iconsStyle : {
       color : "grey"
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
     cardStyle : {
       width: 100, 
       height: 100 ,
-      alignSelf :'flex-end' ,
+      alignSelf :'flex-start' ,
       marginRight : 25 ,
       flexDirection: 'row',
     }, 
@@ -88,23 +99,32 @@ const styles = StyleSheet.create({
     paragraghStyle : {
       width: 200, 
       height: 70 , 
-      marginTop : 10 ,
-      paddingTop : 13 ,
+      marginTop : 0 ,
+      
+    
       marginRight : 25 ,
       fontSize : 20 , 
-      fontWeight : 'bold'
+      fontWeight : 'bold' ,
+      
     } , 
     titleStyle : {
  
       fontSize : 15 ,
       fontFamily: "normal" , 
       color : 'grey' ,
+      marginRight:5
     } ,
     nonTitleStyle : {
       fontSize : 15 ,
       fontFamily: "normal" ,
     } ,
-
+    alignLeft : {
+      alignSelf:'flex-end',
+    
+    } ,
+    justify : {
+      justifyContent : 'flex-start'
+    }
   });
 
 

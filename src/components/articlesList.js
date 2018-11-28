@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet , Text , View , Alert } from 'react-native';
 import EachCard from './eachCard';
 
 
 
 const ArticlesList = (props) => {
     console.log("this is what u searching");
-    console.log("look forward", props.data);
+    console.log("look forward", props);
 
     const getImgUrl = (str) => {
         
@@ -34,6 +34,7 @@ const ArticlesList = (props) => {
     Author={eachCard._embedded.author[0].name}
     Date={eachCard.date} 
     PicSrc={getImgUrl(eachCard.content.rendered)}
+    
     selcted={true}
     />
             )):null
