@@ -1,39 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import Header from './src/components/header';
-import EachCard from './src/components/eachCard';
-import Cards from './src/components/cards';
-import ArticleComponent from './src/components/articleContent'
+import Header from './header';
+import EachCard from './eachCard';
+import Cards from './cards';
+import reducers from '../reducers';
+//import Cards from './src/components/cards'
 
 //Redux requiered libraries
 import { Provider } from 'react-redux';
 import { createStore , applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
-import reducers from './src/reducers';
-// import FeedStack from './src/config/router';
 
 
 const createStoreWithMiddlewre = applyMiddleware(promiseMiddleware)(createStore);
 
- class App extends React.Component {
-  static navigationOptions = {
-    header : null
-  };
+class Home extends React.Component {
 
   render() {
     return (
-        
+      <View>
+        <Header />
         <Provider store={createStoreWithMiddlewre(reducers)}>
-          <View> 
-            <Header />
-            <ScrollView style={{marginBottom:80}}>
-              <Cards {...this.props}/>
-            </ScrollView>
-          </View>
+          <ScrollView style={{marginBottom:80}}>
+            <Cards />
+          </ScrollView>
         </Provider>
-      
+      </View>
 
       
 
@@ -91,13 +84,7 @@ const styles = StyleSheet.create({
   
 });
 
-const AppNavigator = createStackNavigator({
-  Home: { screen: App } ,
-  Article : { screen : ArticleComponent} ,
-
-});
-
-export default createAppContainer(AppNavigator);
+export default Home;
 
 
 /*

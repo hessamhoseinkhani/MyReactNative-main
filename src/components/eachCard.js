@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View , Alert } from 'react-native';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Button , Card , Title, Paragraph ,Drawer ,Appbar ,DefaultTheme ,Divider} from 'react-native-paper';
 import moment from 'jalali-moment'
-
-
+// importing files 
+import ArticleContent from './articleContent';
+import Home from './Home';
+import Cards from './cards';
 
 const theme = {
     ...DefaultTheme,
@@ -25,11 +28,12 @@ class EachCard extends Component {
 
 
     render() { 
+        // const { navigate } = this.props.navigation;
         return ( 
           
           <View>
 
-        <Card button={true} onPress={() => {Alert.alert("2")}}>
+        <Card >
           <Card.Content>
             <Title style={styles.titleStyle}>{this.props.Title}</Title>
             <View style={styles.rowStyle}>
@@ -53,6 +57,11 @@ class EachCard extends Component {
          );
     }
 }
+//  const AppNavigator = createStackNavigator({
+//    App : {screen : Cards} ,
+//    Article : { screen : ArticleContent}
+//  });
+
 const al = () => {
   return Alert.alert("im pressed");
 }
@@ -128,7 +137,7 @@ const styles = StyleSheet.create({
   });
 
 
-  
+// export default createAppContainer(AppNavigator);
 export default EachCard;
 
 
@@ -163,5 +172,13 @@ export default EachCard;
       
         </Card>
 </PaperProvider> 
+
+
+
+
+
+
+
+button={true} onPress={() => {Alert.alert("2")}}
         
 */

@@ -23,7 +23,7 @@ class CardsContainer extends Component {
     };
 */
     componentWillMount(){
-        console.log(this.props);
+        //console.log(this.props);
         this.props.articlesListAll();
         /*
         console.log("object Mounted !!!");
@@ -50,7 +50,8 @@ class CardsContainer extends Component {
 
     render() { 
         //console.log(typeof(this.state.cards[0].Content.rendered));
-        console.log(this.props);
+        console.log("****** we are in cards container");
+        console.log(this.props.navigation);
         return (
             <View>
                 <ArticlesList {...this.props} />

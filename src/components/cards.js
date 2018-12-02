@@ -5,10 +5,12 @@ import CardsContainer from '../containers/cards_container';
 
 
 
-const Cards = () => {
+const Cards = (props) => {
+    console.log("****** we are in cards");
+        //console.log(props);
     return (
         <View>
-            <CardsContainer />
+            <CardsContainer {...props}/>
         </View>
     )
 }
@@ -95,16 +97,3 @@ class Cards extends Component {
 
 export default Cards;
 */
-
-
-/*
-            {id:1 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"13 Dec"  },
-            {id:2 ,cardTitle:"I am the test " ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
-            {id:3 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
-            {id:4 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
-            {id:5 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Denniro" ,datePosted:"25 Nov"  },
-            {id:6 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
-            {id:7 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Denniro" ,datePosted:"25 Nov"  },
-            {id:8 ,cardTitle:"CARD TITLE" ,cardContent:"Lorem Ipsum is simply dummy text of the printing and typesetting industry" ,cardAuthor:"Samix" ,datePosted:"25 Nov"  },
-*/
-

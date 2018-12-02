@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet , Text , View , Alert } from 'react-native';
+import { StyleSheet , Text , View , Alert , TouchableHighlight } from 'react-native';
 import EachCard from './eachCard';
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import ArticleContent from './articleContent';
+
+
 
 
 
 const ArticlesList = (props) => {
-    console.log("this is what u searching");
-    console.log("look forward", props);
+    
+    //console.log("look forward", props);
 
     const getImgUrl = (str) => {
         
@@ -20,26 +24,32 @@ const ArticlesList = (props) => {
             else 
                 return "https://fakeimg.pl/300/";
     }
-
+    console.log("this is what u searching");
+    console.log(props.navigation);
 
 
 
     const renderArticles = (articles) => (
         articles ?
             articles.map((eachCard,i) =>(
-                <EachCard
-    key={eachCard.id}
-    //Title={eachCard.title.rendered}
-    Content={eachCard.title.rendered}
-    Author={eachCard._embedded.author[0].name}
-    Date={eachCard.date} 
-    PicSrc={getImgUrl(eachCard.content.rendered)}
-    
-    selcted={true}
-    />
+                <TouchableHighlight key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
+                    content : eachCard.content.rendered 
+                })}>
+                    <EachCard
+                        key={eachCard.id}
+                        //Title={eachCard.title.rendered}
+                        Content={eachCard.title.rendered}
+                        Author={eachCard._embedded.author[0].name}
+                        Date={eachCard.date} 
+                        PicSrc={getImgUrl(eachCard.content.rendered)}
+                        
+                        selcted={true}
+                    />   
+                </TouchableHighlight>
+
             )):null
     )
-
+    //const { navigate } = this.props.navigation;
     return (
         <View>
             {renderArticles(props.data.articles)}
@@ -48,4 +58,11 @@ const ArticlesList = (props) => {
     
 };
 
+//  const AppNavigator = createStackNavigator({
+//    App : {screen : ArticlesList} ,
+//    Article : { screen : ArticleContent}
+//  });
+
+
+// export default createAppContainer(AppNavigator);
 export default ArticlesList;

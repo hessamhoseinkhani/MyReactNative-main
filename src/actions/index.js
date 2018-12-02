@@ -3,19 +3,24 @@ import axios from 'axios';
 const URL = `http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`;
 
 export function articlesListAll(){
-
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
       
-    console.log(request);
+    //console.log(request);
 
     return {
         type: 'GET_ARTICLES_ALL',
         payload: request
     };
 }
-
-
+/*
+export function selectedArticle(id){
+    return {
+        type : 'SELECTED_ARTICLE' ,
+        payload : id 
+    };
+}
+*/
 
 /*
         console.log("object Mounted !!!");
