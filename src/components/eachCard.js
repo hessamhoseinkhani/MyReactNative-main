@@ -67,7 +67,7 @@ const al = () => {
 }
 
 const niceDate = (date) => {
-  return  moment(date ,'YYYY-M-D HH:mm:ss').locale('fa').format('dddd  Do  MMMM  YYYY');
+  return  moment(date ,'YYYY-M-D HH:mm:ss').locale('fa').format('D  MMMM  YYYY');
 }
 
 
@@ -109,23 +109,22 @@ const styles = StyleSheet.create({
       width: 200, 
       height: 70 , 
       marginTop : 0 ,
-      
-    
+      fontFamily : 'IRANYekanMobile-Bold' ,    
       marginRight : 25 ,
       fontSize : 20 , 
-      fontWeight : 'bold' ,
+
       
     } , 
     titleStyle : {
  
       fontSize : 15 ,
-      fontFamily: "normal" , 
+      fontFamily: 'IRANYekanMobile-Light' , 
       color : 'grey' ,
       marginRight:5
     } ,
     nonTitleStyle : {
       fontSize : 15 ,
-      fontFamily: "normal" ,
+      fontFamily: 'IRANYekanMobile-Regular' ,
     } ,
     alignLeft : {
       alignSelf:'flex-end',

@@ -6,13 +6,31 @@ export function articlesListAll(){
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
       
-    //console.log(request);
 
     return {
         type: 'GET_ARTICLES_ALL',
         payload: request
     };
 }
+
+
+export function loadFontTruth () {
+    const fontStatus = {fontIsLoaded : true } 
+
+    return {
+        type : 'LOAD-FONT' ,
+        payload : fontStatus 
+    }
+}
+
+
+
+
+
+
+
+
+
 /*
 export function selectedArticle(id){
     return {

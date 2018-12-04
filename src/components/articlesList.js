@@ -9,8 +9,6 @@ import ArticleContent from './articleContent';
 
 
 const ArticlesList = (props) => {
-    
-    //console.log("look forward", props);
 
     const getImgUrl = (str) => {
         
@@ -33,7 +31,8 @@ const ArticlesList = (props) => {
         articles ?
             articles.map((eachCard,i) =>(
                 <TouchableHighlight key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
-                    content : eachCard.content.rendered 
+                    content : eachCard.content.rendered ,
+                    title : eachCard.title.rendered
                 })}>
                     <EachCard
                         key={eachCard.id}
@@ -49,7 +48,7 @@ const ArticlesList = (props) => {
 
             )):null
     )
-    //const { navigate } = this.props.navigation;
+
     return (
         <View>
             {renderArticles(props.data.articles)}
@@ -58,11 +57,4 @@ const ArticlesList = (props) => {
     
 };
 
-//  const AppNavigator = createStackNavigator({
-//    App : {screen : ArticlesList} ,
-//    Article : { screen : ArticleContent}
-//  });
-
-
-// export default createAppContainer(AppNavigator);
 export default ArticlesList;

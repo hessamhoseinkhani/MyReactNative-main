@@ -1,18 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { Font } from 'expo';
 
 import Header from './src/components/header';
 import EachCard from './src/components/eachCard';
 import Cards from './src/components/cards';
 import ArticleComponent from './src/components/articleContent'
-
+import Home from './src/components/Home';
 //Redux requiered libraries
 import { Provider } from 'react-redux';
 import { createStore , applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import reducers from './src/reducers';
-// import FeedStack from './src/config/router';
+
 
 
 const createStoreWithMiddlewre = applyMiddleware(promiseMiddleware)(createStore);
@@ -26,12 +27,7 @@ const createStoreWithMiddlewre = applyMiddleware(promiseMiddleware)(createStore)
     return (
         
         <Provider store={createStoreWithMiddlewre(reducers)}>
-          <View> 
-            <Header />
-            <ScrollView style={{marginBottom:80}}>
-              <Cards {...this.props}/>
-            </ScrollView>
-          </View>
+          <Home {...this.props} />
         </Provider>
       
 
@@ -99,120 +95,3 @@ const AppNavigator = createStackNavigator({
 
 export default createAppContainer(AppNavigator);
 
-
-/*
-        <Header />
-        <Button mode="contained" compact="press" color="green" style={styles.buttonStyle}>press</Button>
-        <Card>
-          <Card.Content>
-            <Title>Card title</Title>
-            <Paragraph>Card content</Paragraph>
-          </Card.Content>
-          <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-          <Card.Actions>
-            <Button>Cancel</Button>
-            <Button>Ok</Button>
-          </Card.Actions>
-        </Card>
-        <Text>manurios</Text>
-
-
-
-
-
-                <Drawer.Section title="Some title">
-        <Drawer.Item
-          label="First Item"
-          active={this.state.active === 'first'}
-          onPress={() => { this.setState({ active: 'first' }); }}
-        />
-        <Drawer.Item
-          label="Second Item"
-          active={this.state.active === 'second'}
-          onPress={() => { this.setState({ active: 'second' }); }}
-        />
-     </Drawer.Section>
-*/
-
-
-
-/*
-      <PaperProvider theme={theme}>
-
-      <Appbar.Header style={styles.appBar}>
-        <Appbar.Action
-         icon="dehaze"
-        />
-        <Appbar.Content
-          title="Home"
-          style={styles.textStyle}
-        />
-        <Appbar.Action icon="search"  color="grey" />
-      </Appbar.Header>
-
-
-
-
-  <Card>
-    <Card.Content>
-      <Title style={styles.titleStyle}>CARD TITLE</Title>
-      <View style={styles.rowStyle}>
-        <Paragraph numberOfLines={3} style={styles.paragraghStyle}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Paragraph>
-        <Card.Cover source={{ uri: 'https://picsum.photos/200' }} style={styles.cardStyle} />
-        
-      </View>
-      
-    </Card.Content>
-    <Title style={[styles.nonTitleStyle , styles.textStyle]}>Samix</Title>
-    <View style={styles.rowStyle}>
-      <Title style={[styles.textStyle , styles.titleStyle]}>25 Nov</Title>
-      <Title style={styles.titleStyle}>  .  5 min read</Title>
-    </View>
-
-
-  
-  </Card>
-
-      </PaperProvider>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <Appbar.Header style={styles.appBar}>
-                <Appbar.Action
-                icon="dehaze"
-                />
-                <Appbar.Content
-                  title="Home"
-                  style={styles.textStyle}
-                />
-                <Appbar.Action icon="search"  color="grey" />
-            </Appbar.Header>
-
-
-
-
-
-
-
-
-
-
-
-
-*/
