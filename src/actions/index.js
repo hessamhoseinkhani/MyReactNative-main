@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const URL = `http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`;
+//const URL = `http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`;
 
-export function articlesListAll(){
+export function articlesListAll(URL){
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
       
@@ -12,6 +12,18 @@ export function articlesListAll(){
         payload: request
     };
 }
+
+export function articlesListMore(URL){
+    const request = axios.get(`${URL}`)
+                    .then(response => response.data)
+      
+
+    return {
+        type: 'GET_ARTICLES_MORE',
+        payload: request
+    };
+}
+
 
 
 export function loadFontTruth () {

@@ -23,8 +23,8 @@ addDiv (str){
 
         const title = this.props.navigation.getParam('title', 'Null') ;
         return (  
-            <ScrollView>
-                <View style={styles.container}>
+            <ScrollView style={styles.container}>
+                <View >
                     <Text style={styles.header}>{title}</Text>
                     <Divider style={styles.divider} />
                     <HTML html={content} imagesMaxWidth={Dimensions.get('window').weight } baseFontStyle={{ fontSize : 15 , fontFamily : 'IRANYekanMobile-Regular'}}  listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  tagsStyles = {tagsStyles}/>
@@ -35,11 +35,31 @@ addDiv (str){
     }
 }
 
+/*
+important Video implementation
+
+  <HTML  html={htmlContent} renderers={{
+    video: (u) => (
+<Video
+  source={{ uri: u.src }}
+  rate={1.0}
+  volume={1.0}
+  isMuted={false}
+  
+  shouldPlay
+  isLooping
+  style={{ width: 600 , height: 300 }}
+/>
+     ),
+  }}/>
+
+*/
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginRight : 15 , 
+        margin : 7 , 
         marginTop : 15
 
     },

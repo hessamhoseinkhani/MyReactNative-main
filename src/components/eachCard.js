@@ -4,6 +4,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Button , Card , Title, Paragraph ,Drawer ,Appbar ,DefaultTheme ,Divider} from 'react-native-paper';
 import moment from 'jalali-moment'
+import HTML from 'react-native-render-html';
 // importing files 
 import ArticleContent from './articleContent';
 import Home from './Home';
@@ -35,7 +36,10 @@ class EachCard extends Component {
 
         <Card >
           <Card.Content>
-            <Title style={styles.titleStyle}>{this.props.Title}</Title>
+            <View >
+              <Text style={ styles.titleStyle }>{this.props.Title}</Text>
+            </View>
+            
             <View style={styles.rowStyle}>
               <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
               <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
@@ -43,10 +47,9 @@ class EachCard extends Component {
             </View>
           </Card.Content>
           <View style={styles.alignLeft}>
-          <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:25}]}>{this.props.Author}</Title>
           <View style={styles.rowStyle}>
-            <Title style={[styles.textStyle , styles.titleStyle]}>{niceDate(this.props.Date)}</Title>
-            <Title style={styles.titleStyle}></Title>
+            <Title style={[styles.textStyle , styles.nonTitleStyle]}>{niceDate(this.props.Date).toPersianDigits()}</Title>
+            <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:16}]}>{this.props.Author}</Title>
           </View>
           </View>
 
@@ -57,13 +60,13 @@ class EachCard extends Component {
          );
     }
 }
-//  const AppNavigator = createStackNavigator({
-//    App : {screen : Cards} ,
-//    Article : { screen : ArticleContent}
-//  });
 
-const al = () => {
-  return Alert.alert("im pressed");
+
+String.prototype.toPersianDigits= function(){
+  var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+  return this.replace(/[0-9]/g, function(w){
+      return id[+w]
+  });
 }
 
 const niceDate = (date) => {
@@ -108,23 +111,24 @@ const styles = StyleSheet.create({
     paragraghStyle : {
       width: 200, 
       height: 70 , 
-      marginTop : 0 ,
-      fontFamily : 'IRANYekanMobile-Bold' ,    
+      marginTop : 10 ,
       marginRight : 25 ,
-      fontSize : 20 , 
+      fontFamily : 'IRANYekanMobile-Regular' ,    
+      fontSize : 17 , 
 
       
     } , 
     titleStyle : {
  
-      fontSize : 15 ,
-      fontFamily: 'IRANYekanMobile-Light' , 
-      color : 'grey' ,
-      marginRight:5
+      fontSize : 20 ,
+      fontFamily: 'IRANYekanMobile-Bold' , 
+
+      marginRight:5 , 
+
     } ,
     nonTitleStyle : {
       fontSize : 15 ,
-      fontFamily: 'IRANYekanMobile-Regular' ,
+      fontFamily: 'IRANYekanMobile-Light' ,
     } ,
     alignLeft : {
       alignSelf:'flex-end',
@@ -136,48 +140,10 @@ const styles = StyleSheet.create({
   });
 
 
-// export default createAppContainer(AppNavigator);
+
 export default EachCard;
-
-
-
-/*   
-<PaperProvider theme={theme}>   
-            <Appbar.Header style={styles.appBar}>
-              <Appbar.Action
-               icon="dehaze"
-              />
-              <Appbar.Content
-                title="Home"
-                style={styles.textStyle}
-              />
-              <Appbar.Action icon="search"  color="grey" />
-            </Appbar.Header>
-        <Card>
-          <Card.Content>
-            <Title style={styles.titleStyle}>title</Title>
-            <View style={styles.rowStyle}>
-              <Paragraph numberOfLines={3} style={styles.paragraghStyle}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Paragraph>
-              <Card.Cover source={{ uri: 'https://picsum.photos/200' }} style={styles.cardStyle} />
-              
-            </View>
-            
-          </Card.Content>
-          <Title style={[styles.nonTitleStyle , styles.textStyle]}>Samix</Title>
-          <View style={styles.rowStyle}>
-            <Title style={[styles.textStyle , styles.titleStyle]}>25 Nov</Title>
-            <Title style={styles.titleStyle}>  .  5 min read</Title>
-          </View>
-      
-        </Card>
-</PaperProvider> 
+//<Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>
 
 
 
 
-
-
-
-button={true} onPress={() => {Alert.alert("2")}}
-        
-*/

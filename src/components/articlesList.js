@@ -23,7 +23,7 @@ const ArticlesList = (props) => {
                 return "https://fakeimg.pl/300/";
     }
     console.log("this is what u searching");
-    console.log(props.navigation);
+    //console.log(props.navigation);
 
 
 
@@ -36,12 +36,11 @@ const ArticlesList = (props) => {
                 })}>
                     <EachCard
                         key={eachCard.id}
-                        //Title={eachCard.title.rendered}
-                        Content={eachCard.title.rendered}
+                        Title={eachCard.title.rendered}
+                        Content={eachCard.title.rendered} //{eachCard.excerpt.rendered}
                         Author={eachCard._embedded.author[0].name}
                         Date={eachCard.date} 
                         PicSrc={getImgUrl(eachCard.content.rendered)}
-                        
                         selcted={true}
                     />   
                 </TouchableHighlight>

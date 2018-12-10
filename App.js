@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer , createDrawerNavigator} from "react-navigation";
 import { Font } from 'expo';
 
 import Header from './src/components/header';
@@ -86,11 +86,10 @@ const styles = StyleSheet.create({
   } ,
   
 });
-
+//just changed createStackNavigator to createDrawerNavigator
 const AppNavigator = createStackNavigator({
   Home: { screen: App } ,
   Article : { screen : ArticleComponent} ,
-
 });
 
 export default createAppContainer(AppNavigator);

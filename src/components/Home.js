@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , ScrollView , Alert} from 'react-native';
+import { StyleSheet, Text, View , ScrollView , Alert , Animated} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Font } from 'expo';
@@ -11,12 +11,24 @@ import EachCard from './eachCard';
 import Cards from './cards';
 import reducers from '../reducers';
 
+import { articlesListMore } from '../actions';
 import { loadFontTruth } from '../actions'
+
+
+
+const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+  const paddingToBottom = 20;
+  return layoutMeasurement.height + contentOffset.y >=
+    contentSize.height - paddingToBottom;
+};
+
+
 
 class Home extends React.Component {
 
   state = {
     fontLoaded: false,
+    viewedPage : 2
   };
 
 
@@ -37,6 +49,30 @@ class Home extends React.Component {
   }
   
 
+/*
+
+const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+  const paddingToBottom = 20;
+  return layoutMeasurement.height + contentOffset.y >=
+    contentSize.height - paddingToBottom;
+};
+
+//const MyCoolScrollViewComponent = ({enableSomeButton}) => (
+  
+  <ScrollView
+    onScroll={({nativeEvent}) => {
+      if (isCloseToBottom(nativeEvent)) {
+        Alert.alert("asdad");
+      }
+    }}
+    scrollEventThrottle={400}
+  >
+
+*/
+
+
+
+
   render() {
     console.log("data i am seeking for");
     //console.log(this.data);
@@ -46,10 +82,19 @@ class Home extends React.Component {
         {
           this.state.fontLoaded ? (
             <View>
-            <Header />
-            <ScrollView style={{marginBottom:80}}>
+            <Header {...this.props}/>
+            <Animated.ScrollView 
+            style={{marginBottom:155}}     
+            onScroll={({nativeEvent}) => {
+              if (isCloseToBottom(nativeEvent)) {
+                this.setState({ viewedPage : this.state.viewedPage+1});
+                this.props.articlesListMore(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=${this.state.viewedPage}`);
+                //Alert.alert("asdad");
+              }
+            }}
+            scrollEventThrottle={400}>
               <Cards {...this.props}/>
-            </ScrollView>
+            </Animated.ScrollView>
             </View>
           ) : null
         }
@@ -111,15 +156,14 @@ const styles = StyleSheet.create({
 
 
 function mapStateToProps(state){
-  //console.log(state.loadFont);
   return {      
-      data : state.loadFont
+    data : state.articles
   }
 }
 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({loadFontTruth} , dispatch)
+  return bindActionCreators({articlesListMore} , dispatch)
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home);

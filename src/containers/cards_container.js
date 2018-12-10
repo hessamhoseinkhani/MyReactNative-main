@@ -22,7 +22,7 @@ class CardsContainer extends Component {
     };
 */
     componentWillMount(){
-        this.props.articlesListAll();
+        this.props.articlesListAll(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`);
     }
 
     render() { 

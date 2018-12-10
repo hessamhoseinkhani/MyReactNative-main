@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import {Text , View , StyleSheet} from 'react-native';
+import {Text , View , StyleSheet , Alert} from 'react-native';
 
 import { Provider as PaperProvider, Divider } from 'react-native-paper';
 import { Button ,Card, Title, Paragraph ,Drawer ,Appbar ,DefaultTheme } from 'react-native-paper';
 
 
 class Header extends Component {
+  
     render() { 
         return (
             <Appbar.Header style={styles.appBar}>
-            <Appbar.Action
-            icon="dehaze"
-            />
+
             <Appbar.Content
-              title="Home"
-              style={styles.textStyle}
+              title = 'خانه'
+              style = {styles.appbarContentStyle}
+              titleStyle={styles.textStyle}
             />
-            <Appbar.Action icon="search"  color="grey" />
+            <Appbar.Action
+              color="grey"
+              icon="dehaze"
+              onPress={() => this.props.navigation.navigate('Article')}
+            />
             </Appbar.Header>
           );
     }
@@ -26,8 +30,12 @@ const styles = StyleSheet.create({
   appBar : {
     backgroundColor : "black"
   } ,
+  appbarContentStyle : {
+    alignItems : 'flex-end'
+  },
   textStyle : {
-    marginLeft: 16 ,
+    fontFamily : 'IRANYekanMobile-Bold' ,
+    fontSize : 20 ,
   } ,
   });
   
@@ -35,3 +43,9 @@ const styles = StyleSheet.create({
 
 
 export default Header;
+
+{/* <Appbar.Content
+title="خانه شمت"
+style={styles.textStyle}
+/> */}
+// <Appbar.Action icon="search"  color="grey" />
