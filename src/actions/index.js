@@ -5,11 +5,13 @@ import axios from 'axios';
 export function articlesListAll(URL){
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
-      
-
+     
+    
+                    
     return {
         type: 'GET_ARTICLES_ALL',
-        payload: request
+        payload: request ,
+        
     };
 }
 
@@ -17,14 +19,50 @@ export function articlesListMore(URL){
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
       
-
     return {
         type: 'GET_ARTICLES_MORE',
-        payload: request
+        payload:request //{request , currentURL : URL}
     };
 }
 
+export function latestURL(URL) {
+    return {
+        type : 'LATEST_URL' ,
+        payload : URL 
+    }
+}
 
+export function loadFalser() {
+    return {
+        type : 'LOAD_FALSER' ,
+        payload : null
+    }
+}
+
+
+export function incrementLoadedPage(pageNum) {
+    return {
+        type : 'INCREMENT_LOADED_PAGE' ,
+        payload : pageNum+1
+    }
+}
+
+export function getSingleArticle(URL) {
+    const request = axios.get(`${URL}`)
+                    .then(response => response.data)
+
+    return {
+        type : 'GET_SINGLE_ARTICLE' ,
+        payload : request
+    }
+}
+
+export function singleLoadFalser() {
+    return {
+        type : 'SINGLE_LOAD_FALSER' ,
+        payload : null
+    }
+}
 
 export function loadFontTruth () {
     const fontStatus = {fontIsLoaded : true } 

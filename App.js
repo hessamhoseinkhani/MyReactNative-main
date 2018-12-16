@@ -1,13 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View , ScrollView } from 'react-native';
+import { StyleSheet, Text, View , ScrollView , Button , Alert} from 'react-native';
 import { createStackNavigator, createAppContainer , createDrawerNavigator} from "react-navigation";
 import { Font } from 'expo';
+import {Drawer} from 'native-base';
 
 import Header from './src/components/header';
 import EachCard from './src/components/eachCard';
 import Cards from './src/components/cards';
 import ArticleComponent from './src/components/articleContent'
 import Home from './src/components/Home';
+import Index from './src/components';
+import CategoriesComponent from './src/components/categoriesComponent'
 //Redux requiered libraries
 import { Provider } from 'react-redux';
 import { createStore , applyMiddleware } from 'redux';
@@ -23,20 +26,25 @@ const createStoreWithMiddlewre = applyMiddleware(promiseMiddleware)(createStore)
     header : null
   };
 
+
+
   render() {
+    console.log('@@@@ we are in app.js @@@');
+    //console.log(this.props);
+    
     return (
         
         <Provider store={createStoreWithMiddlewre(reducers)}>
-          <Home {...this.props} />
+          <Index  {...this.props} /> 
         </Provider>
-      
+              
 
       
 
     );
   }
 }
-
+// index => Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -87,10 +95,45 @@ const styles = StyleSheet.create({
   
 });
 //just changed createStackNavigator to createDrawerNavigator
-const AppNavigator = createStackNavigator({
-  Home: { screen: App } ,
-  Article : { screen : ArticleComponent} ,
-});
+// const AppNavigator = createStackNavigator({
+//   Home: { screen: App } ,
+//   Article : { screen : ArticleComponent} ,
+// });
 
-export default createAppContainer(AppNavigator);
+// export default createAppContainer(AppNavigator);
+
+// const AppDrawerNavigator =  createDrawerNavigator({
+//   Home : {screen : Index} ,  
+//   Categories : CategoriesComponent //{screen :  (props) => <CategoriesComponent {...props} /> } 
+// });
+
+
+// const AppContainer = createAppContainer(AppDrawerNavigator);
+
+
+// export default AppContainer;
+
+ export default App ;
+
+// const AppDrawerNavigator =  createDrawerNavigator({
+//   Home : {screen : App} ,  
+//   Categories :({ navigation }) => <CategoriesComponent {...this.props}  store={createStoreWithMiddlewre(reducers)}/> 
+// });
+
+// const AppNavigator = createStackNavigator({
+//   Drawer : {screen : AppDrawerNavigator},
+//   Home: { screen: App } ,
+//   Article : { screen : ArticleComponent} ,
+// }, 
+// {
+//   headerMode: 'none',
+//   navigationOptions: {
+//     headerVisible: false,
+//   }
+//  }
+// );
+
+
+
+// export default createAppContainer(AppNavigator);
 

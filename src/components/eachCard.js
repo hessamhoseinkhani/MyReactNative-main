@@ -42,7 +42,7 @@ class EachCard extends Component {
             
             <View style={styles.rowStyle}>
               <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
-              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
+              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={2} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
               
             </View>
           </Card.Content>
@@ -60,7 +60,7 @@ class EachCard extends Component {
          );
     }
 }
-
+// 
 
 String.prototype.toPersianDigits= function(){
   var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
@@ -70,7 +70,7 @@ String.prototype.toPersianDigits= function(){
 }
 
 const niceDate = (date) => {
-  return  moment(date ,'YYYY-M-D HH:mm:ss').locale('fa').format('D  MMMM  YYYY');
+  return  moment(date ,'YYYY-M-D HH:mm:ss').locale('fa').format('D MMMM YYYY');
 }
 
 

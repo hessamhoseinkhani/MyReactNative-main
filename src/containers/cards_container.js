@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 // Importing Components and Files
 import EachCard from '../components/eachCard';
 import ArticlesList from '../components/articlesList'
-import { articlesListAll } from '../actions';
+import { articlesListAll , latestURL } from '../actions';
 
 
 
@@ -23,6 +23,7 @@ class CardsContainer extends Component {
 */
     componentWillMount(){
         this.props.articlesListAll(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`);
+        this.props.latestURL(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=`);
     }
 
     render() { 
@@ -57,7 +58,7 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({articlesListAll} , dispatch)
+    return bindActionCreators({articlesListAll , latestURL} , dispatch)
 }
 //export default Cards;
 export default connect(mapStateToProps , mapDispatchToProps)(CardsContainer);

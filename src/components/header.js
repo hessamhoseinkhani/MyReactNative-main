@@ -9,18 +9,20 @@ class Header extends Component {
   
     render() { 
         return (
+          
             <Appbar.Header style={styles.appBar}>
 
+            <Appbar.Action
+              color="white"
+              icon="dehaze"
+              onPress={() =>  this.props.navigation.openDrawer()}
+            />
             <Appbar.Content
               title = 'خانه'
               style = {styles.appbarContentStyle}
               titleStyle={styles.textStyle}
             />
-            <Appbar.Action
-              color="grey"
-              icon="dehaze"
-              onPress={() => this.props.navigation.navigate('Article')}
-            />
+
             </Appbar.Header>
           );
     }
@@ -28,14 +30,14 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   appBar : {
-    backgroundColor : "black"
+    backgroundColor : "#0090B0"
   } ,
   appbarContentStyle : {
     alignItems : 'flex-end'
   },
   textStyle : {
     fontFamily : 'IRANYekanMobile-Bold' ,
-    fontSize : 20 ,
+    fontSize : 22 ,
   } ,
   });
   

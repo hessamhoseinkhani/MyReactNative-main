@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View , ScrollView , Alert , Animated} from 'react-native';
+import { Font } from 'expo';
+// Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Font } from 'expo';
 
 //importing files
 
@@ -10,10 +11,12 @@ import Header from './header';
 import EachCard from './eachCard';
 import Cards from './cards';
 import reducers from '../reducers';
+ 
 
-import { articlesListMore } from '../actions';
-import { loadFontTruth } from '../actions'
-
+import { articlesListMore , latestURL , incrementLoadedPage} from '../actions';
+//import { loadFontTruth } from '../actions';
+//import { Icon } from 'react-native-paper/typings/components/List';
+import { Icon } from 'native-base';
 
 
 const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
@@ -69,34 +72,46 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
   >
 
 */
-
-
+    static navigationOptions = {
+      drawerIcon : ({ tintColor }) => (
+        <Icon name="home" style={{ fontSize : 24 , color :  "#0090B0"}}/> 
+      )
+    }
 
 
   render() {
-    console.log("data i am seeking for");
-    //console.log(this.data);
+   // console.log("data i am seeking for");
+    //console.log(this.props);
+    //console.log("data is loaded :" , this.props.data.currentURL);
     return (
       
       <View> 
-        {
+        {    
           this.state.fontLoaded ? (
+
             <View>
             <Header {...this.props}/>
+           
             <Animated.ScrollView 
             style={{marginBottom:155}}     
             onScroll={({nativeEvent}) => {
               if (isCloseToBottom(nativeEvent)) {
-                this.setState({ viewedPage : this.state.viewedPage+1});
-                this.props.articlesListMore(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=${this.state.viewedPage}`);
+                //this.setState({ viewedPage : this.state.viewedPage+1});
+                this.props.incrementLoadedPage(this.props.data.LoadedPage);
+                this.props.articlesListMore(this.props.data.currentURL+this.props.data.LoadedPage);
+                //this.props.latestURL(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=`);
                 //Alert.alert("asdad");
               }
             }}
             scrollEventThrottle={400}>
               <Cards {...this.props}/>
             </Animated.ScrollView>
+
             </View>
+
           ) : null
+        
+
         }
       </View>
     );
@@ -163,7 +178,7 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({articlesListMore} , dispatch)
+  return bindActionCreators({articlesListMore  , latestURL , incrementLoadedPage} , dispatch)
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home);

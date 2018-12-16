@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet , Text , View , Alert , TouchableHighlight } from 'react-native';
+import { StyleSheet , Text , View , Alert , TouchableHighlight , ActivityIndicator} from 'react-native';
 import EachCard from './eachCard';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import ArticleContent from './articleContent';
@@ -22,12 +22,62 @@ const ArticlesList = (props) => {
             else 
                 return "https://fakeimg.pl/300/";
     }
-    console.log("this is what u searching");
-    //console.log(props.navigation);
-
+    console.log("this is what u searching :" , props);
+    //console.log(props);
+    const excerpCleaner = (str) => {
+        return str.search("[&hellip;]") ? str.replace("<p>" , "").replace("</p>" , "").replace("[&hellip;]" , "") : str.replace("<p>" , "").replace("</p>" , "");
+      }
 
 
     const renderArticles = (articles) => (
+        props.data.Loaded ?
+            articles.map((eachCard,i) =>(
+                <TouchableHighlight key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
+                    content : eachCard.content.rendered ,
+                    title : eachCard.title.rendered ,
+                    allProps : props
+                })}>
+                    <EachCard
+                        key={eachCard.id}
+                        Title={eachCard.title.rendered}
+                        Content={excerpCleaner(eachCard.excerpt.rendered)} //{eachCard.excerpt.rendered}
+                        Author={eachCard._embedded.author[0].name}
+                        Date={eachCard.date} 
+                        PicSrc={eachCard._embedded["wp:featuredmedia"]["0"].source_url} //{getImgUrl(eachCard.content.rendered)}
+                        selcted={true}
+                    />   
+                </TouchableHighlight>
+
+            )): <View style={styles.spinner }>
+                    <ActivityIndicator size="large" color="#0090B0" />
+                </View>
+    )
+
+    return (
+        <View>
+            {renderArticles(props.data.articles)}
+        </View>
+    ); 
+};
+
+const styles = StyleSheet.create({
+    spinner : {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop : 200
+    }
+ });
+
+export default ArticlesList;
+
+
+
+
+/*
+// articleList component before implementing Loaded reducer
+
+const renderArticles = (articles) => (
         articles ?
             articles.map((eachCard,i) =>(
                 <TouchableHighlight key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
@@ -40,20 +90,20 @@ const ArticlesList = (props) => {
                         Content={eachCard.title.rendered} //{eachCard.excerpt.rendered}
                         Author={eachCard._embedded.author[0].name}
                         Date={eachCard.date} 
-                        PicSrc={getImgUrl(eachCard.content.rendered)}
+                        PicSrc={eachCard._embedded["wp:featuredmedia"]["0"].source_url} //{getImgUrl(eachCard.content.rendered)}
                         selcted={true}
                     />   
                 </TouchableHighlight>
 
-            )):null
+            )): <View style={styles.spinner }>
+                    <ActivityIndicator size="large" color="#0090B0" />
+                </View>
     )
 
     return (
         <View>
             {renderArticles(props.data.articles)}
         </View>
-    );
-    
+    ); 
 };
-
-export default ArticlesList;
+*/

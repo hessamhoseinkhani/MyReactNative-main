@@ -1,7 +1,14 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View , ScrollView, Dimensions , Alert} from 'react-native';
+import { StyleSheet, Text, View , ScrollView, Dimensions , Alert , Linking } from 'react-native';
 import HTML from 'react-native-render-html';
- import {Divider} from 'react-native-paper';
+import {Divider} from 'react-native-paper';
+import { Video } from 'expo'
+import axios from 'axios';
+
+import { connect , Provider} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getSingleArticle , singleLoadFalser} from '../actions';
+import reducers from '../reducers';
 
 
 class ArticleComponent extends Component {
@@ -17,23 +24,79 @@ widthFixer(str){
 addDiv (str){
 	return (`<div id="main-container" style="direction : rtl">` + str.slice(0 , str.search("<script>"))+`</div>`+str.slice(str.search("<script>")) );
 }
+IdSpliter(a){
+    a = a.slice(a.search(".com")+5)
+      return    a.slice(0 , a.search("-"))
+  }
     render() { 
+        console.log('you are in articles : ' , this.props);
+        
         const { navigate } = this.props.navigation;
         const content =this.widthFixer(this.props.navigation.getParam('content', 'Null'));
+        
 
         const title = this.props.navigation.getParam('title', 'Null') ;
+
         return (  
             <ScrollView style={styles.container}>
                 <View >
                     <Text style={styles.header}>{title}</Text>
                     <Divider style={styles.divider} />
-                    <HTML html={content} imagesMaxWidth={Dimensions.get('window').weight } baseFontStyle={{ fontSize : 15 , fontFamily : 'IRANYekanMobile-Regular'}}  listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  tagsStyles = {tagsStyles}/>
+                    <HTML 
+                    html={content} 
+                    imagesMaxWidth={Dimensions.get('window').weight } 
+                    baseFontStyle={{ fontSize : 15 , fontFamily : 'IRANYekanMobile-Regular'}}  
+                    listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>) , ol: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  
+                    renderers={{    video: (u) => (
+                    <Video
+                      source={{ uri: u.src }}
+                      rate={1.0}
+                      volume={1.0}
+                      isMuted={false}
+                      
+                      shouldPlay
+                      isLooping
+                      style={{ width: 600 , height: 300 }}
+                    />
+                         ),
+                      }}
+                    tagsStyles = {tagsStyles}    
+                    onLinkPress ={async (url , href) => {if (href.search("chetor.com") !== -1) {                   
+                        let id = this.IdSpliter(href);
+                        this.props.singleLoadFalser(); 
+                        await this.props.getSingleArticle(`https://www.chetor.com/wp-json/wp/v2/posts/${id}?_embed&page=1`); 
+                        // console.log('im samix' , this.props.data );
+                       //if(!allProps.SingleLoaded){console.log('im samix' ); } singleArticle
+                       
+                        this.props.navigation.navigate('Article' , {
+                            content : this.props.data.singleArticle.content.rendered ,
+                            title : this.props.data.singleArticle.title.rendered ,
+                            
+                        })
+                      
+                      
+                    } else {Linking.openURL(href)}}
+                     //console.log(Object.values(url))
+                    //  Linking.openURL(href)
+                     }
+                    />
                 </View>
                 
             </ScrollView>
         );
     }
 }
+
+
+
+
+
+/*
+this.props.navigation.navigate('Article' , {
+                        content : this.props.data.singleArticle.content.rendered ,
+                        title : "eachCard.title.rendered"
+                    })
+*/
 
 /*
 important Video implementation
@@ -80,5 +143,30 @@ const styles = StyleSheet.create({
 const tagsStyles = { h1:{fontFamily:'IRANYekanMobile-Bold'},h2:{fontFamily:'IRANYekanMobile-Bold'},h3:{fontFamily:'IRANYekanMobile-Bold'},h4:{fontFamily:'IRANYekanMobile-Bold'},h5:{fontFamily:'IRANYekanMobile-Bold'}};
 
 
-export default ArticleComponent;
 
+function mapStateToProps(state){
+    console.log('+++ u are' , state);
+    
+    return {      
+      data : state.articles
+    }
+  }
+  
+  
+  function mapDispatchToProps(dispatch){
+    return bindActionCreators({ getSingleArticle , singleLoadFalser } , dispatch)
+  }
+
+  export default connect(mapStateToProps , mapDispatchToProps)(ArticleComponent)
+// export default ArticleComponent;
+
+
+
+
+
+
+
+// this.props.navigation.navigate('Article' , {
+//     content : eachCard.content.rendered ,
+//     title : eachCard.title.rendered
+// })
