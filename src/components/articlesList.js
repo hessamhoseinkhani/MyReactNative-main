@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet , Text , View , Alert , TouchableHighlight , ActivityIndicator} from 'react-native';
+import { StyleSheet , Text , View , Alert , TouchableHighlight , ActivityIndicator , TouchableOpacity} from 'react-native';
 import EachCard from './eachCard';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import ArticleContent from './articleContent';
@@ -9,6 +9,8 @@ import ArticleContent from './articleContent';
 
 
 const ArticlesList = (props) => {
+
+    state = {active : false}
 
     const getImgUrl = (str) => {
         
@@ -32,7 +34,7 @@ const ArticlesList = (props) => {
     const renderArticles = (articles) => (
         props.data.Loaded ?
             articles.map((eachCard,i) =>(
-                <TouchableHighlight key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
+                <TouchableOpacity key={eachCard.id} onPress={() => props.navigation.navigate('Article' , {
                     content : eachCard.content.rendered ,
                     title : eachCard.title.rendered ,
                     allProps : props
@@ -46,7 +48,7 @@ const ArticlesList = (props) => {
                         PicSrc={eachCard._embedded["wp:featuredmedia"]["0"].source_url} //{getImgUrl(eachCard.content.rendered)}
                         selcted={true}
                     />   
-                </TouchableHighlight>
+                </TouchableOpacity>
 
             )): <View style={styles.spinner }>
                     <ActivityIndicator size="large" color="#0090B0" />
@@ -56,10 +58,12 @@ const ArticlesList = (props) => {
     return (
         <View>
             {renderArticles(props.data.articles)}
+            {props.data.MoreLoaded ? (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop : 10}}><ActivityIndicator size="small" color="#0090B0" /></View>) : null}
         </View>
     ); 
 };
 
+//{!props.data.MoreLoaded ? (<Text>heloo</Text>) : null}
 const styles = StyleSheet.create({
     spinner : {
         flex: 1,

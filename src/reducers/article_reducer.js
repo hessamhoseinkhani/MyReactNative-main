@@ -2,6 +2,9 @@ export default function(state = {} , action){
     switch(action.type){
         case 'LOAD_FALSER'  :
             return  {...state , Loaded : false  }
+        
+        case 'LOAD_MORE_FALSER'  :
+            return  {...state , MoreLoaded : true  }
 
         case 'SINGLE_LOAD_FALSER'  :
             return  {...state , SingleLoaded : false  }
@@ -16,7 +19,7 @@ export default function(state = {} , action){
             return {...state , singleArticle : action.payload , SingleLoaded : true  }
 
         case 'GET_ARTICLES_MORE' :
-            return {...state , articles : [ ...state.articles , ...action.payload]  }
+            return {...state , articles : [ ...state.articles , ...action.payload] , MoreLoaded : false  }
 
         case 'LATEST_URL' : 
             return {...state , currentURL : action.payload , LoadedPage : 2}
@@ -24,4 +27,4 @@ export default function(state = {} , action){
             return state;
     }
 }
-//, currentURL : action.payload.currentURL  'GET_SINGLE_ARTICLE' 
+//, currentURL : action.payload.currentURL   

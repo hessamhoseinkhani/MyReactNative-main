@@ -42,14 +42,14 @@ class EachCard extends Component {
             
             <View style={styles.rowStyle}>
               <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
-              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={2} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
+              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
               
             </View>
           </Card.Content>
           <View style={styles.alignLeft}>
           <View style={styles.rowStyle}>
             <Title style={[styles.textStyle , styles.nonTitleStyle]}>{niceDate(this.props.Date).toPersianDigits()}</Title>
-            <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:16}]}>{this.props.Author}</Title>
+            <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:16}]}>{this.props.Author} |</Title>
           </View>
           </View>
 
@@ -113,8 +113,9 @@ const styles = StyleSheet.create({
       height: 70 , 
       marginTop : 10 ,
       marginRight : 25 ,
-      fontFamily : 'IRANYekanMobile-Regular' ,    
-      fontSize : 17 , 
+      lineHeight : 20 ,
+      fontFamily : 'IRANYekanMobile-Light' ,    
+      fontSize : 16 , 
 
       
     } , 
@@ -122,12 +123,13 @@ const styles = StyleSheet.create({
  
       fontSize : 20 ,
       fontFamily: 'IRANYekanMobile-Bold' , 
+      lineHeight : 24 ,
 
       marginRight:5 , 
 
     } ,
     nonTitleStyle : {
-      fontSize : 15 ,
+      fontSize : 14 ,
       fontFamily: 'IRANYekanMobile-Light' ,
     } ,
     alignLeft : {

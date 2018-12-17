@@ -13,7 +13,7 @@ import Cards from './cards';
 import reducers from '../reducers';
  
 
-import { articlesListMore , latestURL , incrementLoadedPage} from '../actions';
+import { articlesListMore , latestURL , incrementLoadedPage , loadMoreFalser } from '../actions';
 //import { loadFontTruth } from '../actions';
 //import { Icon } from 'react-native-paper/typings/components/List';
 import { Icon } from 'native-base';
@@ -97,6 +97,7 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
             onScroll={({nativeEvent}) => {
               if (isCloseToBottom(nativeEvent)) {
                 //this.setState({ viewedPage : this.state.viewedPage+1});
+                this.props.loadMoreFalser();
                 this.props.incrementLoadedPage(this.props.data.LoadedPage);
                 this.props.articlesListMore(this.props.data.currentURL+this.props.data.LoadedPage);
                 //this.props.latestURL(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=`);
@@ -178,7 +179,7 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({articlesListMore  , latestURL , incrementLoadedPage} , dispatch)
+  return bindActionCreators({articlesListMore  , latestURL , incrementLoadedPage , loadMoreFalser } , dispatch)
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home);

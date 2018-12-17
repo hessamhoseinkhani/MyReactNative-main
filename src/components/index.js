@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{flex : 1}} >
     <View style={{ height : 150 , backgroundColor : 'white' , alignItems : 'center', marginTop : 29}}>
-      <Image source={require('../../assets/Logo.png')} style={{ height: 140 , width : 137 }}/>
+      <Image source={require('../../assets/icon.png')} style={{ height: 140 , width : 140 }}/>
     </View>
     <ScrollView>
       <DrawerItems style={{alignItems : 'flex-end'}} {...props} />

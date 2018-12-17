@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View , ScrollView, Dimensions , Alert , Linking } from 'react-native';
+import { StyleSheet, Text, View , ScrollView, Dimensions , Alert , Linking , Animated} from 'react-native';
 import HTML from 'react-native-render-html';
-import {Divider} from 'react-native-paper';
+import { Divider , Appbar } from 'react-native-paper';
 import { Video } from 'expo'
 import axios from 'axios';
 
@@ -12,9 +12,7 @@ import reducers from '../reducers';
 
 
 class ArticleComponent extends Component {
-static navigationOptions ={
-    title : 'Article Content'
-}
+
 widthFixer(str){
     while(str.search("width") !== -1){
         str = str.slice(0,str.search("width"))+str.slice(str.search("width")+11);
@@ -38,14 +36,29 @@ IdSpliter(a){
         const title = this.props.navigation.getParam('title', 'Null') ;
 
         return (  
-            <ScrollView style={styles.container}>
+            <Animated.ScrollView >
+
+                    <Appbar.Header style={styles.appBar}>
+                    <Appbar.BackAction onPress={() => this.props.navigation.goBack() }/>
+                    <Appbar.Content
+                        
+                        style = {styles.appbarContentStyle}
+                        
+                    />
+                    </Appbar.Header>
+
+            <Animated.ScrollView  style={styles.container}>
+                                
                 <View >
+
+
+
                     <Text style={styles.header}>{title}</Text>
                     <Divider style={styles.divider} />
                     <HTML 
                     html={content} 
                     imagesMaxWidth={Dimensions.get('window').weight } 
-                    baseFontStyle={{ fontSize : 15 , fontFamily : 'IRANYekanMobile-Regular'}}  
+                    baseFontStyle={{ fontSize : 17, lineHeight:23 ,textAlign:'justify'  , fontFamily : 'IRANYekanMobile-Regular'}}  
                     listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>) , ol: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  
                     renderers={{    video: (u) => (
                     <Video
@@ -53,7 +66,6 @@ IdSpliter(a){
                       rate={1.0}
                       volume={1.0}
                       isMuted={false}
-                      
                       shouldPlay
                       isLooping
                       style={{ width: 600 , height: 300 }}
@@ -61,28 +73,32 @@ IdSpliter(a){
                          ),
                       }}
                     tagsStyles = {tagsStyles}    
-                    onLinkPress ={async (url , href) => {if (href.search("chetor.com") !== -1) {                   
-                        let id = this.IdSpliter(href);
-                        this.props.singleLoadFalser(); 
-                        await this.props.getSingleArticle(`https://www.chetor.com/wp-json/wp/v2/posts/${id}?_embed&page=1`); 
-                        // console.log('im samix' , this.props.data );
-                       //if(!allProps.SingleLoaded){console.log('im samix' ); } singleArticle
-                       
-                        this.props.navigation.navigate('Article' , {
-                            content : this.props.data.singleArticle.content.rendered ,
-                            title : this.props.data.singleArticle.title.rendered ,
-                            
-                        })
-                      
-                      
-                    } else {Linking.openURL(href)}}
+                    onLinkPress ={async (url , href) => { if (href.search("chetor.com") !== -1 ) { 
+                        if( href.search("tag") !== -1 | href.search("category") !== -1){Linking.openURL(href)}   
+                        else{
+                            let id = this.IdSpliter(href);
+                            this.props.singleLoadFalser(); 
+                            await this.props.getSingleArticle(`https://www.chetor.com/wp-json/wp/v2/posts/${id}?_embed&page=1`); 
+                            // console.log('im samix' , this.props.data );
+                           //if(!allProps.SingleLoaded){console.log('im samix' ); } singleArticle
+                           
+                            this.props.navigation.navigate('Article' , {
+                                content : this.props.data.singleArticle.content.rendered ,
+                                title : this.props.data.singleArticle.title.rendered ,
+                                
+                            })
+                        }               
+} 
+                        
+                        else {Linking.openURL(href)}}
                      //console.log(Object.values(url))
                     //  Linking.openURL(href)
                      }
                     />
                 </View>
                 
-            </ScrollView>
+            </Animated.ScrollView >
+            </Animated.ScrollView>
         );
     }
 }
@@ -122,7 +138,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        margin : 7 , 
+        margin : 15 , 
         marginTop : 15
 
     },
@@ -138,9 +154,12 @@ const styles = StyleSheet.create({
     imgStyle : {
         width : 50 ,
         height : 50 
-    }
+    } , 
+    appBar : {
+        backgroundColor : "#0090B0"
+      }
   });
-const tagsStyles = { h1:{fontFamily:'IRANYekanMobile-Bold'},h2:{fontFamily:'IRANYekanMobile-Bold'},h3:{fontFamily:'IRANYekanMobile-Bold'},h4:{fontFamily:'IRANYekanMobile-Bold'},h5:{fontFamily:'IRANYekanMobile-Bold'}};
+const tagsStyles = {a:{textDecorationLine : 'none'}  ,h1:{fontFamily:'IRANYekanMobile-Bold'},h2:{fontFamily:'IRANYekanMobile-Bold'},h3:{fontFamily:'IRANYekanMobile-Bold'},h4:{fontFamily:'IRANYekanMobile-Bold'},h5:{fontFamily:'IRANYekanMobile-Bold'}};
 
 
 

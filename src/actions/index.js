@@ -39,6 +39,12 @@ export function loadFalser() {
     }
 }
 
+export function loadMoreFalser() {
+    return {
+        type : 'LOAD_MORE_FALSER' ,
+        payload : null
+    }
+}
 
 export function incrementLoadedPage(pageNum) {
     return {
