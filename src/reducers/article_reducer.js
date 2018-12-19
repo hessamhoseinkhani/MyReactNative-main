@@ -9,6 +9,9 @@ export default function(state = {} , action){
         case 'SINGLE_LOAD_FALSER'  :
             return  {...state , SingleLoaded : false  }
 
+        case    'HEADER_TITLE'  :
+            return  {...state , HeaderTitle : action.payload  } 
+
         case 'INCREMENT_LOADED_PAGE'  :
             return  {...state , LoadedPage : action.payload  }
 

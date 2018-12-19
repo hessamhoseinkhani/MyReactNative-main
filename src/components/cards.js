@@ -6,7 +6,7 @@ import CardsContainer from '../containers/cards_container';
 
 
 const Cards = (props) => {
-    console.log("****** we are in cards");
+    // console.log("****** we are in cards");
         //console.log(props);
     return (
         <View>

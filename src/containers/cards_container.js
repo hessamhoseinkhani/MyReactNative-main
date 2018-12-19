@@ -28,7 +28,7 @@ class CardsContainer extends Component {
 
     render() { 
 
-        console.log("****** we are in cards container");
+        // console.log("****** we are in cards container");
         return (
             <View>
                 <ArticlesList {...this.props} />

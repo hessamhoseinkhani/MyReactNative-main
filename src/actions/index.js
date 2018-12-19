@@ -6,11 +6,9 @@ export function articlesListAll(URL){
     const request = axios.get(`${URL}`)
                     .then(response => response.data)
      
-    
-                    
     return {
         type: 'GET_ARTICLES_ALL',
-        payload: request ,
+        payload: request 
         
     };
 }
@@ -67,6 +65,14 @@ export function singleLoadFalser() {
     return {
         type : 'SINGLE_LOAD_FALSER' ,
         payload : null
+    }
+}
+
+export function headerTitle (headerName){
+
+    return {
+        type : 'HEADER_TITLE' ,
+        payload : headerName 
     }
 }
 

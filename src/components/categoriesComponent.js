@@ -6,7 +6,7 @@ import { withNavigation } from 'react-navigation';
 
 import { connect , Provider} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { articlesListAll , latestURL , loadFalser } from '../actions';
+import { articlesListAll , latestURL , loadFalser , headerTitle} from '../actions';
 import reducers from '../reducers';
 
 class CategoriesComponent extends Component {
@@ -31,6 +31,7 @@ class CategoriesComponent extends Component {
       )
     }
 
+
     render() { 
 
         return ( 
@@ -47,7 +48,7 @@ class CategoriesComponent extends Component {
             <Content>
               <List>
               <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.articlesListAll(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`); this.props.latestURL(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=`); this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('همه پست ها'); this.props.articlesListAll(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=1`); this.props.latestURL(`http://chetor.com/wp-json/wp/v2/posts?_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >همه پست ها </Text>
                   </Body>
@@ -58,19 +59,19 @@ class CategoriesComponent extends Component {
               </Body>
             </ListItem> 
                 <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser();  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('روانشناسی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >روانشناسی </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1035&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1035&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser();this.props.headerTitle('تناسب اندام'); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1035&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1035&_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >تناسب اندام </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=`);  this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('رژیم و تغذیه'); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=`);  this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >رژیم و تغذیه </Text>
                   </Body>
@@ -81,19 +82,19 @@ class CategoriesComponent extends Component {
               </Body>
             </ListItem>
             <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('معرفی کتاب '); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >معرفی کتاب </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1036&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1036&_embed&page=`); this.props.navigation.goBack()   }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('عادات موفقیت'); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1036&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1036&_embed&page=`); this.props.navigation.goBack()   }   } >
                   <Body  >
                     <Text style={styles.textStyle} >عادات موفقیت </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
-                  onPress={() =>  { this.props.loadFalser();  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=1`);  this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=`);  this.props.navigation.goBack()} } >
+                  onPress={() =>  { this.props.loadFalser(); this.props.headerTitle('مد و زیبایی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=1`);  this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=`);  this.props.navigation.goBack()} } >
                   <Body  >
                     <Text style={styles.textStyle} >مد و زیبایی </Text>
                   </Body>
@@ -139,7 +140,7 @@ function mapStateToProps(state){
   
   
   function mapDispatchToProps(dispatch){
-    return bindActionCreators({articlesListAll , latestURL , loadFalser} , dispatch)
+    return bindActionCreators({ articlesListAll , latestURL , loadFalser , headerTitle } , dispatch)
   }
   
 export default withNavigation( connect(mapStateToProps , mapDispatchToProps)(CategoriesComponent) );

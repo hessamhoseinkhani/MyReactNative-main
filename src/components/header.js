@@ -8,6 +8,10 @@ import { Button ,Card, Title, Paragraph ,Drawer ,Appbar ,DefaultTheme } from 're
 class Header extends Component {
   
     render() { 
+      console.log('header props  => ' , this.props);
+      ali = ()=> {
+        return this.props.data.HeaderTitle ? this.props.data.HeaderTitle : 'خانه' 
+      }
         return (
           
             <Appbar.Header style={styles.appBar}>
@@ -18,7 +22,7 @@ class Header extends Component {
               onPress={() =>  this.props.navigation.openDrawer()}
             />
             <Appbar.Content
-              title = 'خانه'
+              title = {ali()}
               style = {styles.appbarContentStyle}
               titleStyle={styles.textStyle}
             />

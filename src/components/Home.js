@@ -11,9 +11,9 @@ import Header from './header';
 import EachCard from './eachCard';
 import Cards from './cards';
 import reducers from '../reducers';
- 
+import CardsContainer from '../containers/cards_container';
 
-import { articlesListMore , latestURL , incrementLoadedPage , loadMoreFalser } from '../actions';
+import { articlesListMore , latestURL , incrementLoadedPage , loadMoreFalser , headerTitle} from '../actions';
 //import { loadFontTruth } from '../actions';
 //import { Icon } from 'react-native-paper/typings/components/List';
 import { Icon } from 'native-base';
@@ -78,9 +78,11 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
       )
     }
 
+   
 
   render() {
-   // console.log("data i am seeking for");
+    
+   // console.log("data i am seeking for");this.props.headerTitle('')
     //console.log(this.props);
     //console.log("data is loaded :" , this.props.data.currentURL);
     return (
@@ -90,7 +92,8 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
           this.state.fontLoaded ? (
 
             <View>
-            <Header {...this.props}/>
+              
+            <Header {...this.props} />
            
             <Animated.ScrollView 
             style={{marginBottom:155}}     
@@ -105,7 +108,8 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
               }
             }}
             scrollEventThrottle={400}>
-              <Cards {...this.props}/>
+              
+              <CardsContainer {...this.props}/>
             </Animated.ScrollView>
 
             </View>
@@ -118,7 +122,7 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
     );
   }
 }
-
+// <Cards {...this.props}/>
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -179,7 +183,7 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({articlesListMore  , latestURL , incrementLoadedPage , loadMoreFalser } , dispatch)
+  return bindActionCreators({articlesListMore  , latestURL , incrementLoadedPage , loadMoreFalser , headerTitle} , dispatch)
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home);

@@ -27,7 +27,7 @@ IdSpliter(a){
       return    a.slice(0 , a.search("-"))
   }
     render() { 
-        console.log('you are in articles : ' , this.props);
+        // console.log('you are in articles : ' , this.props);
         
         const { navigate } = this.props.navigation;
         const content =this.widthFixer(this.props.navigation.getParam('content', 'Null'));
@@ -60,7 +60,8 @@ IdSpliter(a){
                     imagesMaxWidth={Dimensions.get('window').weight } 
                     baseFontStyle={{ fontSize : 17, lineHeight:23 ,textAlign:'justify'  , fontFamily : 'IRANYekanMobile-Regular'}}  
                     listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>) , ol: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  
-                    renderers={{    video: (u) => (
+                    renderers={{video: (u) => (
+                        
                     <Video
                       source={{ uri: u.src }}
                       rate={1.0}
@@ -68,8 +69,9 @@ IdSpliter(a){
                       isMuted={false}
                       shouldPlay
                       isLooping
-                      style={{ width: 600 , height: 300 }}
+                      style={{ width: Dimensions.get('window').weight , height: 300  }}
                     />
+                    
                          ),
                       }}
                     tagsStyles = {tagsStyles}    
@@ -107,32 +109,7 @@ IdSpliter(a){
 
 
 
-/*
-this.props.navigation.navigate('Article' , {
-                        content : this.props.data.singleArticle.content.rendered ,
-                        title : "eachCard.title.rendered"
-                    })
-*/
 
-/*
-important Video implementation
-
-  <HTML  html={htmlContent} renderers={{
-    video: (u) => (
-<Video
-  source={{ uri: u.src }}
-  rate={1.0}
-  volume={1.0}
-  isMuted={false}
-  
-  shouldPlay
-  isLooping
-  style={{ width: 600 , height: 300 }}
-/>
-     ),
-  }}/>
-
-*/
 
 const styles = StyleSheet.create({
     container: {
@@ -159,7 +136,7 @@ const styles = StyleSheet.create({
         backgroundColor : "#0090B0"
       }
   });
-const tagsStyles = {a:{textDecorationLine : 'none'}  ,h1:{fontFamily:'IRANYekanMobile-Bold'},h2:{fontFamily:'IRANYekanMobile-Bold'},h3:{fontFamily:'IRANYekanMobile-Bold'},h4:{fontFamily:'IRANYekanMobile-Bold'},h5:{fontFamily:'IRANYekanMobile-Bold'}};
+const tagsStyles = { a:{textDecorationLine : 'none'}  ,h1:{fontFamily:'IRANYekanMobile-Bold' , paddingTop:10},h2:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h3:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h4:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h5:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10}};
 
 
 
@@ -184,8 +161,3 @@ function mapStateToProps(state){
 
 
 
-
-// this.props.navigation.navigate('Article' , {
-//     content : eachCard.content.rendered ,
-//     title : eachCard.title.rendered
-// })

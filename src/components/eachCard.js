@@ -10,17 +10,6 @@ import ArticleContent from './articleContent';
 import Home from './Home';
 import Cards from './cards';
 
-const theme = {
-    ...DefaultTheme,
-    roundness: 2,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: '#3498db',
-      accent: '#f1c40f',
-    }
-  };
-
-
 
 class EachCard extends Component {
     state = {
@@ -28,28 +17,28 @@ class EachCard extends Component {
       };
 
 
-    render() { 
+    render() { // <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />   //styles.justify   //style={[styles.paragraghStyle , styles.alignLeft]}
         // const { navigate } = this.props.navigation;
         return ( 
           
           <View>
 
-        <Card >
-          <Card.Content>
+        <Card>
+        <Card.Content>
             <View >
               <Text style={ styles.titleStyle }>{this.props.Title}</Text>
             </View>
             
             <View style={styles.rowStyle}>
               <Card.Cover source={{ uri: this.props.PicSrc }} style={styles.cardStyle} />
-              <View style={styles.justify}><Text writingDirection='ltr' numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
+              <View style={styles.justify}><Text  numberOfLines={3} style={[styles.paragraghStyle , styles.alignLeft]}>{this.props.Content}</Text></View>
               
             </View>
           </Card.Content>
           <View style={styles.alignLeft}>
           <View style={styles.rowStyle}>
             <Title style={[styles.textStyle , styles.nonTitleStyle]}>{niceDate(this.props.Date).toPersianDigits()}</Title>
-            <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:16}]}>{this.props.Author} |</Title>
+            <Title style={[styles.nonTitleStyle , styles.textStyle , styles.alignLeft , {marginRight:16}]}>{this.props.Author}  •</Title>
           </View>
           </View>
 
@@ -92,7 +81,7 @@ const styles = StyleSheet.create({
 
     } ,
     textStyle : {
-      marginLeft: 16 ,
+      marginLeft: 8 ,
       
     } ,
     iconsStyle : {
@@ -104,6 +93,7 @@ const styles = StyleSheet.create({
       alignSelf :'flex-start' ,
       marginRight : 25 ,
       flexDirection: 'row',
+      
     }, 
     rowStyle : {
       flexDirection: 'row'
@@ -112,7 +102,7 @@ const styles = StyleSheet.create({
       width: 200, 
       height: 70 , 
       marginTop : 10 ,
-      marginRight : 25 ,
+      marginRight : 7 ,
       lineHeight : 20 ,
       fontFamily : 'IRANYekanMobile-Light' ,    
       fontSize : 16 , 
@@ -137,7 +127,8 @@ const styles = StyleSheet.create({
     
     } ,
     justify : {
-      justifyContent : 'flex-start'
+      flex : 1
+     // justifyContent : 'flex-start'
     }
   });
 

@@ -24,7 +24,7 @@ const ArticlesList = (props) => {
             else 
                 return "https://fakeimg.pl/300/";
     }
-    console.log("this is what u searching :" , props);
+    // console.log("this is what u searching :" , props);
     //console.log(props);
     const excerpCleaner = (str) => {
         return str.search("[&hellip;]") ? str.replace("<p>" , "").replace("</p>" , "").replace("[&hellip;]" , "") : str.replace("<p>" , "").replace("</p>" , "");
