@@ -96,6 +96,7 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
             <Header {...this.props} />
            
             <Animated.ScrollView 
+            removeClippedSubviews={true}
             style={{marginBottom:155}}     
             onScroll={({nativeEvent}) => {
               if (isCloseToBottom(nativeEvent)) {

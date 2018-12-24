@@ -19,14 +19,8 @@
     },
     "android": {
       "package": "com.chechiz.chechiz",
-      "versionCode": 3 ,
-      "permissions": [
-        "CAMERA",
-        "READ_CONTACTS",
-        "READ_PHONE_STATE",
-        "RECORD_AUDIO"
-
-      ] 
+      "versionCode": 5 ,
+      "permissions": [] 
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -40,3 +34,4 @@
     }
   }
 }
+
