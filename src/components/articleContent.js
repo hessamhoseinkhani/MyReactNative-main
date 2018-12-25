@@ -31,6 +31,8 @@ IdSpliter(a){
         
         const { navigate } = this.props.navigation;
         const content =this.widthFixer(this.props.navigation.getParam('content', 'Null'));
+        // this.widthFixer(this.props.navigation.getParam('content', 'Null'));
+          
         
 
         const title = this.props.navigation.getParam('title', 'Null') ;
@@ -57,7 +59,7 @@ IdSpliter(a){
                     <Divider style={styles.divider} />
                     <HTML 
                     html={content} 
-                    imagesMaxWidth={Dimensions.get('window').weight } 
+                    imagesMaxWidth={Dimensions.get('window').width } 
                     baseFontStyle={{ fontSize : 17, lineHeight:23 ,textAlign:'justify'  , fontFamily : 'IRANYekanMobile-Regular'}}  
                     listsPrefixesRenderers={{ul: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>) , ol: (_htmlAttribs, _children, _convertedCSSStyles, passProps) => (<Text></Text>)}}  
                     renderers={{video: (u) => (
@@ -69,7 +71,7 @@ IdSpliter(a){
                       isMuted={false}
                       shouldPlay
                       isLooping
-                      style={{ width: Dimensions.get('window').weight , height: 300  }}
+                      style={{ width: Dimensions.get('window').width , height: (Dimensions.get('window').width * 9)/16 }}
                     />
                     
                          ),
@@ -81,8 +83,8 @@ IdSpliter(a){
                             let id = this.IdSpliter(href);
                             this.props.singleLoadFalser(); 
                             await this.props.getSingleArticle(`https://www.chetor.com/wp-json/wp/v2/posts/${id}?_embed&page=1`); 
-                            // console.log('im samix' , this.props.data );
-                           //if(!allProps.SingleLoaded){console.log('im samix' ); } singleArticle
+                            // console.log('im samix' , this.props.data );  , height: (Dimensions.get('window').width * 9)/16  
+                           //if(!allProps.SingleLoaded){console.log('im samix' ); } singleArticle   `https://www.chetor.com/wp-json/wp/v2/posts/${id}?_embed&page=1`
                            
                             this.props.navigation.navigate('Article' , {
                                 content : this.props.data.singleArticle.content.rendered ,
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
         backgroundColor : "#0090B0"
       }
   });
-const tagsStyles = { a:{textDecorationLine : 'none'}  ,h1:{fontFamily:'IRANYekanMobile-Bold' , paddingTop:10},h2:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h3:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h4:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h5:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10}};
+const tagsStyles = {iframe:{ width : Dimensions.get('window').width , height :(Dimensions.get('window').width)/1.7} , a:{textDecorationLine : 'none'}  ,h1:{fontFamily:'IRANYekanMobile-Bold' , paddingTop:10},h2:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h3:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h4:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10},h5:{fontFamily:'IRANYekanMobile-Bold', paddingTop:10}};
 
 
 

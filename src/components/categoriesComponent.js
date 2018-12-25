@@ -35,7 +35,7 @@ class CategoriesComponent extends Component {
     render() { 
 
         return ( 
-          <Animated.ScrollView >
+          <Animated.ScrollView removeClippedSubviews={true} >
             <Container>
               <Appbar.Header style={styles.appBar}>
               <Appbar.BackAction onPress={() => this.props.navigation.goBack() }/>
@@ -58,10 +58,10 @@ class CategoriesComponent extends Component {
               <Text style={styles.titleStyle}>سلامتی</Text>
               </Body>
             </ListItem> 
-                <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('روانشناسی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=`); this.props.navigation.goBack()  }   } >
+              <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('بیماری ها');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2722&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2722&_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
-                    <Text style={styles.textStyle} >روانشناسی </Text>
+                    <Text style={styles.textStyle} >بیماری ها </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
@@ -71,20 +71,64 @@ class CategoriesComponent extends Component {
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('خواص خوراکی ها');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2724&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2724&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >خواص خوراکی ها </Text>
+                  </Body>
+                </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('روانشناسی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1033&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >روانشناسی </Text>
+                  </Body>
+                </ListItem>
+
+                <ListItem thumbnail 
                   onPress={() => {this.props.loadFalser(); this.props.headerTitle('رژیم و تغذیه'); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1067&_embed&page=`);  this.props.navigation.goBack()  }   } >
                   <Body  >
                     <Text style={styles.textStyle} >رژیم و تغذیه </Text>
                   </Body>
                 </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('سلامت زنان');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2725&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2725&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >سلامت زنان </Text>
+                  </Body>
+                </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('سلامت و تربیت کودک');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=3252&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=3252&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >سلامت و تربیت کودک </Text>
+                  </Body>
+                </ListItem>
+
                 <ListItem itemDivider>
-              <Body  >
+              <Body>
               <Text style={styles.titleStyle}>سبک زندگی</Text>
               </Body>
             </ListItem>
             <ListItem thumbnail 
-                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('معرفی کتاب '); this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2719&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('آشپزی سالم');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=3233&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=3233&_embed&page=`); this.props.navigation.goBack()  }   } >
                   <Body  >
-                    <Text style={styles.textStyle} >معرفی کتاب </Text>
+                    <Text style={styles.textStyle} >آشپزی سالم </Text>
+                  </Body>
+                </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('تکنولوژی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2494&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2494&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >تکنولوژی </Text>
+                  </Body>
+                </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('خانه داری');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2519&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2519&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >خانه داری </Text>
+                  </Body>
+                </ListItem>
+                <ListItem thumbnail 
+                  onPress={() => {this.props.loadFalser(); this.props.headerTitle('دکوراسیون داخلی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2520&_embed&page=1`); this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=2520&_embed&page=`); this.props.navigation.goBack()  }   } >
+                  <Body  >
+                    <Text style={styles.textStyle} >دکوراسیون داخلی </Text>
                   </Body>
                 </ListItem>
                 <ListItem thumbnail 
@@ -93,6 +137,7 @@ class CategoriesComponent extends Component {
                     <Text style={styles.textStyle} >عادات موفقیت </Text>
                   </Body>
                 </ListItem>
+
                 <ListItem thumbnail 
                   onPress={() =>  { this.props.loadFalser(); this.props.headerTitle('مد و زیبایی');  this.props.articlesListAll(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=1`);  this.props.latestURL(`https://www.chetor.com/wp-json/wp/v2/posts?categories=1037&_embed&page=`);  this.props.navigation.goBack()} } >
                   <Body  >

@@ -19,8 +19,8 @@
     },
     "android": {
       "package": "com.chechiz.chechiz",
-      "versionCode": 5 ,
-      "permissions": [] 
+      "versionCode": 7,
+      "permissions": []
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -34,4 +34,3 @@
     }
   }
 }
-
