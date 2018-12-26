@@ -9,6 +9,7 @@ import {
   Animated
 } from "react-native";
 import { Font } from "expo";
+
 // required Redux requiered libraries
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -63,7 +64,6 @@ class Home extends React.Component {
         {this.state.fontLoaded ? (
           <View>
             <Header {...this.props} />
-
             <Animated.ScrollView
               removeClippedSubviews={true}
               style={{ marginBottom: 155 }}
@@ -86,55 +86,6 @@ class Home extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  buttonStyle: {
-    marginLeft: 125,
-    marginRight: 125
-  },
-  appBar: {
-    backgroundColor: "black"
-  },
-  textStyle: {
-    marginLeft: 16
-  },
-  iconsStyle: {
-    color: "grey"
-  },
-  cardStyle: {
-    width: 100,
-    height: 100,
-    alignSelf: "flex-end",
-    marginRight: 25,
-    flexDirection: "row"
-  },
-  rowStyle: {
-    flexDirection: "row"
-  },
-  paragraghStyle: {
-    width: 200,
-    height: 70,
-    marginTop: 10,
-    marginRight: 25,
-    fontSize: 20,
-    fontWeight: "bold"
-  },
-  titleStyle: {
-    fontSize: 15,
-    fontFamily: "normal",
-    color: "grey"
-  },
-  nonTitleStyle: {
-    fontSize: 15,
-    fontFamily: "normal"
-  }
-});
 
 function mapStateToProps(state) {
   return {
