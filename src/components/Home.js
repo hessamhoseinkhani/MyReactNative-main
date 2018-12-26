@@ -9,6 +9,7 @@ import {
   Animated
 } from "react-native";
 import { Font } from "expo";
+import { Icon } from "native-base";
 
 // required Redux requiered libraries
 import { connect } from "react-redux";
