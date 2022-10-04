@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "expo": "^31.0.2",
+    "expo": "^46.0.14",
     "jalali-moment": "^3.2.3",
     "native-base": "^2.8.1",
     "react": "16.5.0",
